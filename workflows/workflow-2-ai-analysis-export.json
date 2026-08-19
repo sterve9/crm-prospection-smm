@@ -1,0 +1,417 @@
+{
+  "name": "PROD - [CRM] AI Analysis & Export - v2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA",
+          "mode": "list",
+          "cachedResultName": "CRM-Suivi-Prospection-Ingrid",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "À trier",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nom du lieu": "={{ $json.nom }}",
+            "Téléphone": "='{{ $json.telephone }}",
+            "Site Web": "={{ $json.site_web }}",
+            "Note Google": "={{ $json.note_google }}",
+            "Statut de qualification": "={{ $json.statut }}",
+            "Adresse": "={{ $json.adresse }}",
+            "Activité": "={{ $json.recherche }}",
+            "Email": "={{ $json.email }}",
+            "Accroche": "={{ $json.accroche }}",
+            "Score": "={{ $json.priorite }}",
+            "Angle Prospection": "={{ $json.angle }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nom du lieu",
+              "displayName": "Nom du lieu",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Activité",
+              "displayName": "Activité",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Téléphone",
+              "displayName": "Téléphone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Site Web",
+              "displayName": "Site Web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note Google",
+              "displayName": "Note Google",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Statut de qualification",
+              "displayName": "Statut de qualification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Angle Prospection",
+              "displayName": "Angle Prospection",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Accroche",
+              "displayName": "Accroche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        -80
+      ],
+      "id": "f9bbd051-3ad6-47a6-8dff-417f579bd9bd",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "UFi7go4Zcy3jXkGT",
+          "name": "Google Sheets — Service Account Vendeur IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -800,
+        -80
+      ],
+      "id": "20c79809-012f-4b88-b382-c738a36deb42",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT p.*\nFROM prospects p\nJOIN collectes c ON p.place_id = c.place_id\nWHERE c.id_campagne::text = '{{ $json.id_campagne }}';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -608,
+        -80
+      ],
+      "id": "dbbae713-7184-45b3-be06-b3fd91d0825e",
+      "name": "SQL_Get_Prospects",
+      "credentials": {
+        "postgres": {
+          "id": "VIoMD82T0NJcp6B7",
+          "name": "Supabase - Wacm Prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b416ecda-0291-41e5-89c1-7a708af2e7a6",
+              "name": "nom",
+              "value": "={{ $json.nom }}",
+              "type": "string"
+            },
+            {
+              "id": "9827c028-9c58-409f-bc00-dc30d35257ea",
+              "name": "categorie",
+              "value": "={{ $json.categorie }}",
+              "type": "string"
+            },
+            {
+              "id": "5ec05dca-e098-4aab-a347-b637ab90bd31",
+              "name": "site_web",
+              "value": "={{ $json.site_web }}",
+              "type": "string"
+            },
+            {
+              "id": "32b49222-05d7-4a47-8392-fe346ddaf60a",
+              "name": "reseaux_sociaux",
+              "value": "=FB: {{ $json.facebook || 'Non renseigné' }} / LI: {{ $json.linkedin || 'Non renseigné' }} / IG: {{ $json.instagram || 'Non renseigné' }}",
+              "type": "string"
+            },
+            {
+              "id": "7840c8e0-0193-4e1b-bf77-48729cd93ad4",
+              "name": "avis",
+              "value": "=Note: {{ $json.note_google }}/5 sur {{ $json.nombre_avis }} avis",
+              "type": "string"
+            },
+            {
+              "id": "eb9e7abb-cb3c-4a4d-a156-c66dd6a25ee6",
+              "name": "metier",
+              "value": "={{ $json.recherche }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -432,
+        -80
+      ],
+      "id": "b7cad505-f626-4550-9476-feb49ef1068b",
+      "name": "Set_AI_Input"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-sonnet-5",
+          "mode": "list",
+          "cachedResultName": "claude-sonnet-5"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Tu es un assistant expert en prospection pour une Social Media Manager. Analyse le prospect suivant :\n- Nom : {{ $json.nom }}\n- Métier : {{ $json.metier }} (Catégorie : {{ $json.categorie }})\n- Présence digitale : {{ $json.reseaux_sociaux }}\n- Réputation : {{ $json.avis }}\n- Site Web : {{ $json.site_web }}\n\nTon rôle est de fournir une recommandation d'approche pour Ingrid.\n\nRéponds UNIQUEMENT sous forme de JSON structuré, sans texte avant ou après :\n{\n  \"angle\": \"Explique ici en 10 mots l'angle de prospection (ex: besoin de visibilité Instagram)\",\n  \"accroche\": \"Rédige ici la phrase d'approche courte pour Ingrid\",\n  \"priorite\": \"Un chiffre entre 1 et 5\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        -80
+      ],
+      "id": "2b7d9d4a-2d37-441e-a800-eb800bd36fc3",
+      "name": "AI_Claude_Prospect_Analysis",
+      "credentials": {
+        "anthropicApi": {
+          "id": "w7OEC4dThiZIPIES",
+          "name": "Anthropic account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Déclenchement",
+        "height": 272,
+        "width": 208,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -864,
+        -192
+      ],
+      "id": "fd4ab538-7918-4205-806c-0e2ca09f1034",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Récupération & Préparation",
+        "height": 272,
+        "width": 368,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        -192
+      ],
+      "id": "a2ad7547-c7b1-4f7a-9230-722e6beb0a4a",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Analyse IA & Injection CRM",
+        "height": 272,
+        "width": 656,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -192
+      ],
+      "id": "362aec3b-09c9-46c7-a9c1-52fddc63d564",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map((item, index) => {\n    // 1. Récupérer le texte brut de Claude\n    let text = item.json.content.find(c => c.type === 'text').text;\n    \n    // 2. Nettoyer les balises Markdown ```json et ```\n    text = text.replace(/```json/g, '').replace(/```/g, '').trim();\n    \n    let aiData = {};\n    try {\n        aiData = JSON.parse(text);\n    } catch (e) {\n        aiData = { angle: \"Erreur de parsing\", accroche: \"\", priorite: \"0\" };\n    }\n\n    // 3. Récupérer TOUTES les données d'origine depuis le nœud SQL renommé\n    let originalData = $('SQL_Get_Prospects').all()[index].json;\n\n    // 4. Fusionner : toutes les données SQL d'origine + les nouvelles de l'IA\n    return {\n        json: {\n            ...originalData,\n            ...aiData\n        }\n    };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -80
+      ],
+      "id": "c384655b-7468-45e2-9999-dce151a50a2c",
+      "name": "Parse_AI_And_Merge"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "SQL_Get_Prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SQL_Get_Prospects": {
+      "main": [
+        [
+          {
+            "node": "Set_AI_Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set_AI_Input": {
+      "main": [
+        [
+          {
+            "node": "AI_Claude_Prospect_Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI_Claude_Prospect_Analysis": {
+      "main": [
+        [
+          {
+            "node": "Parse_AI_And_Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse_AI_And_Merge": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "UMjwyTZdxx15LbYJ",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "731f9b68-0ce3-4838-9b71-d51cff36c714",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "09a4271ff440e2d4ed1d23d70521c8ceadc5f0cf389b7a9fad7d7fcb78f3bb2c"
+  },
+  "id": "9DdMRib4qCeWn1pN",
+  "tags": []
+}

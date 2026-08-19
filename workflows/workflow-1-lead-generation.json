@@ -1,0 +1,1311 @@
+{
+  "name": "PROD - [CRM] Lead Generation & AI Scoring - v2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f2446367-3dc3-4871-8d9d-31d902cc5fd6",
+              "name": "nom",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "f68a316e-befa-4c08-bec1-67ca710af0d6",
+              "name": "categorie",
+              "value": "={{ $json.categoryName }}",
+              "type": "string"
+            },
+            {
+              "id": "e85b0de0-86e8-46b0-8335-45dcfa28d022",
+              "name": "adresse",
+              "value": "={{ $json.address }}",
+              "type": "string"
+            },
+            {
+              "id": "cc4d2930-e990-4bfd-857e-ac1dc173d4e9",
+              "name": "code_postal",
+              "value": "={{ $json.postalCode }}",
+              "type": "string"
+            },
+            {
+              "id": "128d03fc-abdb-4f8a-8ff8-d06959bc380e",
+              "name": "site_web",
+              "value": "={{ $json.website }}",
+              "type": "string"
+            },
+            {
+              "id": "83683c40-85dc-4554-b5dd-a0808f42dbf0",
+              "name": "telephone",
+              "value": "={{ $json.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "d1c8a307-3664-47da-b67d-03d789f47a90",
+              "name": "latitude",
+              "value": "={{ $json.location.lat }}",
+              "type": "number"
+            },
+            {
+              "id": "498eeddd-cedb-4207-b78c-0cd95929c6c4",
+              "name": "longitude",
+              "value": "={{ $json.location.lng }}",
+              "type": "number"
+            },
+            {
+              "id": "f09b8846-fa7c-4a36-9d6f-ae99d3ad199b",
+              "name": "note_google",
+              "value": "={{ $json.totalScore }}",
+              "type": "number"
+            },
+            {
+              "id": "e6b6f68a-b275-4eb2-8d05-9ff1a075a236",
+              "name": "nombre_avis",
+              "value": "={{ $json.reviewsCount }}",
+              "type": "number"
+            },
+            {
+              "id": "c1f6ede2-5958-4cd2-9d15-c30c4fbaf448",
+              "name": "place_id",
+              "value": "={{ $json.placeId }}",
+              "type": "string"
+            },
+            {
+              "id": "6ccfbce2-32e3-431f-bdf0-2ddb7e721d64",
+              "name": "categories",
+              "value": "={{ $json.categories }}",
+              "type": "array"
+            },
+            {
+              "id": "03966ff8-ad89-4cae-9b0b-6ac98cf9cd16",
+              "name": "url_google_maps",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "2b7926f5-0635-4f81-a447-2ff057a0c0f8",
+              "name": "recherche",
+              "value": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.search }}",
+              "type": "string"
+            },
+            {
+              "id": "675345c6-f3e6-414d-bb80-194ab75b16e7",
+              "name": "rang_google",
+              "value": "={{ $json.rank }}",
+              "type": "number"
+            },
+            {
+              "id": "1ef8f208-f033-4c59-9966-05b72209defd",
+              "name": "image",
+              "value": "={{ $json.imageUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "2653b355-1f71-4925-8d21-7025fa5580e4",
+              "name": "date_collecte",
+              "value": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.date_collecte }}",
+              "type": "string"
+            },
+            {
+              "id": "cc2c4f73-e5cf-465b-b2cd-d7637e5d68f2",
+              "name": "source_collecte",
+              "value": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.source }}",
+              "type": "string"
+            },
+            {
+              "id": "70f695f7-210a-41af-9571-eec4848565d0",
+              "name": "zone_recherche",
+              "value": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.location }}",
+              "type": "string"
+            },
+            {
+              "id": "def6f792-ac5a-4832-bcad-ae7790df89db",
+              "name": "recherche",
+              "value": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.search }}",
+              "type": "string"
+            },
+            {
+              "id": "a8a42b66-adb7-4ef3-92fc-dba11c56b8d8",
+              "name": "ville",
+              "value": "={{ $json.city }}",
+              "type": "string"
+            },
+            {
+              "id": "af24e749-cd5e-4c14-9524-f5a4cf3e5692",
+              "name": "country_code",
+              "value": "={{ $json.countryCode }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -672,
+        -1008
+      ],
+      "id": "afa8254a-3a05-4cd5-b6a6-7aa201d628cc",
+      "name": "C04-N01 - Nettoyage des prospects"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/nwua9Gu5YrADL7ZDj/run-sync-get-dataset-items",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  searchStringsArray: [\n    $('C03-N01 – Préparer la requête Apify (Set)').item.json.search + \" \" + $('C03-N01 – Préparer la requête Apify (Set)').item.json.location\n  ],\n  maxCrawledPlacesPerSearch: $('C03-N01 – Préparer la requête Apify (Set)').item.json.maxResults,\n  language: \"fr\",\n  countryCode: \"fr\"\n}\n}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -896,
+        -1008
+      ],
+      "id": "18cf63ec-0768-47a9-8ebb-b078d2084d28",
+      "name": "C03-N02 - Lancer la collecte Apify",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "9pdyLUM1WQ6y1nqk",
+          "name": "Apify"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "11d4daff-4bd2-4329-8c70-e81dfc5e08a2",
+              "name": "search",
+              "value": "={{ $json.recherche }}",
+              "type": "string"
+            },
+            {
+              "id": "d016ece8-e91c-4220-abc8-e629b84287ce",
+              "name": "location",
+              "value": "={{ $json.zone }}",
+              "type": "string"
+            },
+            {
+              "id": "e80ebda7-b66f-4a00-aec0-6fe38e3b99e1",
+              "name": "maxResults",
+              "value": "={{ $json.limite_resultats }}",
+              "type": "number"
+            },
+            {
+              "id": "2a3931c6-7d81-463d-9eba-9274341e3112",
+              "name": "date_collecte",
+              "value": "={{ $json.date_collecte }}",
+              "type": "string"
+            },
+            {
+              "id": "2bd819a2-a833-4873-9194-bde5a4f3b4ac",
+              "name": "source",
+              "value": "={{ $json.source }}",
+              "type": "string"
+            },
+            {
+              "id": "2028f742-b6e2-4340-9506-10ca755f90d9",
+              "name": "id_campagne",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1344,
+        -1008
+      ],
+      "id": "838dcf1a-4dfe-4e75-a860-8e202c27043d",
+      "name": "C03-N01 – Préparer la requête Apify (Set)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7aed375c-3e1e-447b-b2b7-63b7b75234db",
+              "leftValue": "={{ $json.limite_resultats }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "398fc04a-cbb4-4a36-bd54-c336f3216db1",
+              "leftValue": "={{ $json.limite_resultats }}",
+              "rightValue": 120,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            },
+            {
+              "id": "3c1d36a9-d725-44ff-8005-6fbae9f1b357",
+              "leftValue": "={{ $json.recherche }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "78dff035-0358-447a-8cab-7bc0d39a0a79",
+              "leftValue": "={{ $json.zone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1600,
+        -752
+      ],
+      "id": "cfdc1eff-46e2-4bfb-985a-b9fabc0dcfce",
+      "name": "C02-N01 - Validation"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d0101506-8657-4fc8-a9bc-293b8b0a382c",
+              "name": "recherche",
+              "value": "={{ $json.requete }}",
+              "type": "string"
+            },
+            {
+              "id": "c48159d6-c325-4f1e-82e8-653c370dc344",
+              "name": "zone",
+              "value": "={{ $json['Zone de recherche'] }}",
+              "type": "string"
+            },
+            {
+              "id": "3e5905cf-871c-44b1-8907-ce7b69dc7f7b",
+              "name": "limite_resultats",
+              "value": "={{ $json.limite_resultats }}",
+              "type": "number"
+            },
+            {
+              "id": "196416e2-7276-4aa8-9ff3-7fe440a3fa6d",
+              "name": "date_collecte",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "fe41c772-24f6-4304-9ab2-d84c3baf2e15",
+              "name": "source",
+              "value": "Apify Google Maps",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1808,
+        -752
+      ],
+      "id": "7db06e49-fe56-44d2-bcf9-081bfab9915a",
+      "name": "C01-N02 Construction de l'objet Recherche (Set)"
+    },
+    {
+      "parameters": {
+        "formTitle": "Nouvelle prospection",
+        "formDescription": "Lance une nouvelle collecte Google Maps.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "requete",
+              "placeholder": "Exemple : Sophrologue",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Zone de recherche",
+              "placeholder": "Exemple : Caen",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "limite_resultats",
+              "fieldType": "number",
+              "defaultValue": "10",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "path": "crm-prospection"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -2048,
+        -752
+      ],
+      "id": "15e7ad23-7879-48eb-ada1-3786e93f30fd",
+      "name": "C01-N01 - Form Trigger",
+      "webhookId": "c5bfd252-8c74-48fa-b2e5-18fa6d49ab6a"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "campagnes",
+          "mode": "list",
+          "cachedResultName": "campagnes"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id_campagne": "={{ $json.id_campagne }}",
+            "source": "={{ $json.source }}",
+            "requete": "={{ $json.search }}",
+            "zone": "={{ $json.location }}",
+            "statut": "En cours"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id_campagne",
+              "displayName": "id_campagne",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "date_lancement",
+              "displayName": "date_lancement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "requete",
+              "displayName": "requete",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "zone",
+              "displayName": "zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "statut",
+              "displayName": "statut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1120,
+        -1008
+      ],
+      "id": "338a1be1-3846-4b65-83d9-12b8c406f934",
+      "name": "Enregistrement Campagne",
+      "credentials": {
+        "postgres": {
+          "id": "VIoMD82T0NJcp6B7",
+          "name": "Supabase - Wacm Prod"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -112,
+        -976
+      ],
+      "id": "df4f08a8-1eda-4d2d-ad7e-aaa74b338933",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -976
+      ],
+      "id": "7fc4c5c3-9fcb-4221-af79-c81c10931790",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "content": "Bloc 2 : Scraping & Traitement Apify\nRôle : Préparation des requêtes, exécution de la collecte sur Google Maps via Apify, et nettoyage des données brutes.",
+        "height": 880,
+        "width": 848,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1392,
+        -1360
+      ],
+      "id": "16718877-0a3c-4797-94ce-e262a43a68dc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Bloc 3 : Injection & Reporting CRM\n\nRôle : Insertion des données qualifiées dans les tables et notification de fin de campagne.",
+        "height": 880,
+        "width": 1200,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -496,
+        -1360
+      ],
+      "id": "f86065bb-8106-47d9-abff-62868eb0cc8b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "Bloc 1 : Trigger & Validation\nRôle : Réception de la demande initiale et validation humaine ou technique avant le lancement.",
+        "height": 880,
+        "width": 672,
+        "color": "#2D3748"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        -1360
+      ],
+      "id": "2d8bc7c8-fcf3-4fb4-9453-9ec33e00ab25",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "collectes",
+          "mode": "list",
+          "cachedResultName": "collectes"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "rang_google": "={{ $json.rang_google }}",
+            "note_google": "={{ $json.note_google }}",
+            "nombre_avis": "={{ $json.nombre_avis }}",
+            "date_collecte": "={{ $json.date_collecte }}",
+            "zone_recherche": "={{ $json.zone_recherche }}",
+            "recherche": "={{ $json.recherche }}",
+            "place_id": "={{ $json.place_id }}",
+            "source_collecte": "={{ $json.source_collecte }}",
+            "id_campagne": "={{ $('C03-N01 – Préparer la requête Apify (Set)').item.json.id_campagne }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id_collecte",
+              "displayName": "id_collecte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "date_collecte",
+              "displayName": "date_collecte",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recherche",
+              "displayName": "recherche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "zone_recherche",
+              "displayName": "zone_recherche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "place_id",
+              "displayName": "place_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "rang_google",
+              "displayName": "rang_google",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "note_google",
+              "displayName": "note_google",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "nombre_avis",
+              "displayName": "nombre_avis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source_collecte",
+              "displayName": "source_collecte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_campagne",
+              "displayName": "id_campagne",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -400,
+        -1184
+      ],
+      "id": "5ef20339-8070-40de-ac96-4cb4bf590f52",
+      "name": "C05-N01 - Insert Nouveaux Prospects",
+      "credentials": {
+        "postgres": {
+          "id": "VIoMD82T0NJcp6B7",
+          "name": "Supabase - Wacm Prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "prospects",
+          "mode": "list",
+          "cachedResultName": "prospects"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "note_google": "={{ $json.note_google }}",
+            "nombre_avis": "={{ $json.nombre_avis }}",
+            "latitude": "={{ $json.latitude }}",
+            "longitude": "={{ $json.longitude }}",
+            "rang_google": "={{ $json.rang_google }}",
+            "place_id": "={{ $json.place_id }}",
+            "date_collecte": "={{ $json.date_collecte }}",
+            "recherche": "={{ $json.recherche }}",
+            "categorie": "={{ $json.categorie }}",
+            "nom": "={{ $json.nom }}",
+            "adresse": "={{ $json.adresse }}",
+            "code_postal": "={{ $json.code_postal }}",
+            "telephone": "={{ $json.telephone }}",
+            "site_web": "={{ $json.site_web }}",
+            "url_google_maps": "={{ $json.url_google_maps }}",
+            "image": "={{ $json.image }}",
+            "source_collecte": "={{ $json.source_collecte }}",
+            "categories": "={{ $json.categories }}",
+            "zone_recherche": "={{ $json.zone_recherche }}",
+            "ville": "={{ $json.ville }}",
+            "country_code": "={{ $json.country_code }}"
+          },
+          "matchingColumns": [
+            "place_id"
+          ],
+          "schema": [
+            {
+              "id": "id_prospect",
+              "displayName": "id_prospect",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "place_id",
+              "displayName": "place_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_collecte",
+              "displayName": "date_collecte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "source_collecte",
+              "displayName": "source_collecte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "recherche",
+              "displayName": "recherche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "zone_recherche",
+              "displayName": "zone_recherche",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nom",
+              "displayName": "nom",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "categorie",
+              "displayName": "categorie",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "categories",
+              "displayName": "categories",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "array",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "adresse",
+              "displayName": "adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "code_postal",
+              "displayName": "code_postal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ville",
+              "displayName": "ville",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "country_code",
+              "displayName": "country_code",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "telephone",
+              "displayName": "telephone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "site_web",
+              "displayName": "site_web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "facebook",
+              "displayName": "facebook",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "linkedin",
+              "displayName": "linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "instagram",
+              "displayName": "instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "note_google",
+              "displayName": "note_google",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre_avis",
+              "displayName": "nombre_avis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "latitude",
+              "displayName": "latitude",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "longitude",
+              "displayName": "longitude",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "url_google_maps",
+              "displayName": "url_google_maps",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "rang_google",
+              "displayName": "rang_google",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "statut",
+              "displayName": "statut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "date_creation",
+              "displayName": "date_creation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "date_modification",
+              "displayName": "date_modification",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -400,
+        -816
+      ],
+      "id": "34a80617-6705-49f1-afab-dcca089a37fc",
+      "name": "C05-N02 - Update Prospects Existants",
+      "credentials": {
+        "postgres": {
+          "id": "VIoMD82T0NJcp6B7",
+          "name": "Supabase - Wacm Prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "campagnes",
+          "mode": "list",
+          "cachedResultName": "campagnes"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "statut": "Terminé",
+            "id_campagne": "={{ $('Enregistrement Campagne').first().json.id_campagne }}"
+          },
+          "matchingColumns": [
+            "id_campagne"
+          ],
+          "schema": [
+            {
+              "id": "id_campagne",
+              "displayName": "id_campagne",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date_lancement",
+              "displayName": "date_lancement",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "requete",
+              "displayName": "requete",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "zone",
+              "displayName": "zone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "statut",
+              "displayName": "statut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        304,
+        -976
+      ],
+      "id": "7095ad1a-3cff-45ef-9366-d3d836b5f3a1",
+      "name": "C06-N01 - Clôture Campagne",
+      "credentials": {
+        "postgres": {
+          "id": "VIoMD82T0NJcp6B7",
+          "name": "Supabase - Wacm Prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "9DdMRib4qCeWn1pN",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/9DdMRib4qCeWn1pN",
+          "cachedResultName": "PROD - [CRM] AI Analysis & Export - v2.0"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        512,
+        -976
+      ],
+      "id": "61f4d749-26fc-420a-bc24-d364e0fd1147",
+      "name": "C06-N02 - Trigger Export CRM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "C04-N01 - Nettoyage des prospects": {
+      "main": [
+        [
+          {
+            "node": "C05-N01 - Insert Nouveaux Prospects",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "C05-N02 - Update Prospects Existants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C03-N02 - Lancer la collecte Apify": {
+      "main": [
+        [
+          {
+            "node": "C04-N01 - Nettoyage des prospects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C03-N01 – Préparer la requête Apify (Set)": {
+      "main": [
+        [
+          {
+            "node": "Enregistrement Campagne",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C02-N01 - Validation": {
+      "main": [
+        [
+          {
+            "node": "C03-N01 – Préparer la requête Apify (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C01-N02 Construction de l'objet Recherche (Set)": {
+      "main": [
+        [
+          {
+            "node": "C02-N01 - Validation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C01-N01 - Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "C01-N02 Construction de l'objet Recherche (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrement Campagne": {
+      "main": [
+        [
+          {
+            "node": "C03-N02 - Lancer la collecte Apify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "C06-N01 - Clôture Campagne",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C05-N01 - Insert Nouveaux Prospects": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C05-N02 - Update Prospects Existants": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "C06-N01 - Clôture Campagne": {
+      "main": [
+        [
+          {
+            "node": "C06-N02 - Trigger Export CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "UMjwyTZdxx15LbYJ",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "59422555-33af-4c7a-9b8b-1aae12d4afaa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "09a4271ff440e2d4ed1d23d70521c8ceadc5f0cf389b7a9fad7d7fcb78f3bb2c"
+  },
+  "id": "PKtVGkyKuftp82G1",
+  "tags": []
+}
