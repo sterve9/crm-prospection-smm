@@ -144,7 +144,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -672,
+        -848,
         -1008
       ],
       "id": "afa8254a-3a05-4cd5-b6a6-7aa201d628cc",
@@ -158,7 +158,7 @@
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{\n{\n  searchStringsArray: [\n    $('C03-N01 – Préparer la requête Apify (Set)').item.json.search + \" \" + $('C03-N01 – Préparer la requête Apify (Set)').item.json.location\n  ],\n  maxCrawledPlacesPerSearch: $('C03-N01 – Préparer la requête Apify (Set)').item.json.maxResults,\n  language: \"fr\",\n  countryCode: \"fr\"\n}\n}}",
+        "jsonBody": "={{\n{\n  searchStringsArray: [ $('C03-N01 – Préparer la requête Apify (Set)').item.json.search ],\n  locationQuery: $('C03-N01 – Préparer la requête Apify (Set)').item.json.location,\n  maxCrawledPlacesPerSearch: $('C03-N01 – Préparer la requête Apify (Set)').item.json.maxResults,\n  language: \"fr\",\n  countryCode: \"fr\",\n  skipClosedPlaces: true,\n  scrapeContacts: true,\n  scrapeSocialMediaProfiles: { facebooks: true, instagrams: true, tiktoks: true, twitters: false, youtubes: false }\n}\n}}",
         "options": {
           "response": {
             "response": {
@@ -170,17 +170,13 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -896,
+        -1024,
         -1008
       ],
       "id": "18cf63ec-0768-47a9-8ebb-b078d2084d28",
       "name": "C03-N02 - Lancer la collecte Apify",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "9pdyLUM1WQ6y1nqk",
-          "name": "Apify"
-        }
-      }
+      "retryOnFail": false,
+      "maxTries": 1
     },
     {
       "parameters": {
@@ -380,8 +376,7 @@
         -752
       ],
       "id": "15e7ad23-7879-48eb-ada1-3786e93f30fd",
-      "name": "C01-N01 - Form Trigger",
-      "webhookId": "c5bfd252-8c74-48fa-b2e5-18fa6d49ab6a"
+      "name": "C01-N01 - Form Trigger"
     },
     {
       "parameters": {
@@ -470,24 +465,20 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1120,
+        -1168,
         -1008
       ],
       "id": "338a1be1-3846-4b65-83d9-12b8c406f934",
       "name": "Enregistrement Campagne",
-      "credentials": {
-        "postgres": {
-          "id": "VIoMD82T0NJcp6B7",
-          "name": "Supabase - Wacm Prod"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        -112,
+        0,
         -976
       ],
       "id": "df4f08a8-1eda-4d2d-ad7e-aaa74b338933",
@@ -498,7 +489,7 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        96,
+        192,
         -976
       ],
       "id": "7fc4c5c3-9fcb-4221-af79-c81c10931790",
@@ -680,17 +671,13 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -400,
+        -304,
         -1184
       ],
       "id": "5ef20339-8070-40de-ac96-4cb4bf590f52",
       "name": "C05-N01 - Insert Nouveaux Prospects",
-      "credentials": {
-        "postgres": {
-          "id": "VIoMD82T0NJcp6B7",
-          "name": "Supabase - Wacm Prod"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {
@@ -729,7 +716,16 @@
             "categories": "={{ $json.categories }}",
             "zone_recherche": "={{ $json.zone_recherche }}",
             "ville": "={{ $json.ville }}",
-            "country_code": "={{ $json.country_code }}"
+            "country_code": "={{ $json.country_code }}",
+            "email": "={{ $json.email }}",
+            "facebook": "={{ $json.facebook }}",
+            "linkedin": "={{ $json.linkedin }}",
+            "instagram": "={{ $json.instagram }}",
+            "instagram_abonnes": "={{ $json.instagram_abonnes }}",
+            "instagram_publications": "={{ $json.instagram_publications }}",
+            "facebook_abonnes": "={{ $json.facebook_abonnes }}",
+            "fiche_non_revendiquee": "={{ $json.fiche_non_revendiquee }}",
+            "enrichissement": "={{ $json.enrichissement }}"
           },
           "matchingColumns": [
             "place_id"
@@ -1006,17 +1002,13 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -400,
-        -816
+        -320,
+        -752
       ],
       "id": "34a80617-6705-49f1-afab-dcca089a37fc",
       "name": "C05-N02 - Update Prospects Existants",
-      "credentials": {
-        "postgres": {
-          "id": "VIoMD82T0NJcp6B7",
-          "name": "Supabase - Wacm Prod"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {
@@ -1111,17 +1103,13 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        304,
+        384,
         -976
       ],
       "id": "7095ad1a-3cff-45ef-9366-d3d836b5f3a1",
       "name": "C06-N01 - Clôture Campagne",
-      "credentials": {
-        "postgres": {
-          "id": "VIoMD82T0NJcp6B7",
-          "name": "Supabase - Wacm Prod"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {
@@ -1145,31 +1133,27 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.3,
       "position": [
-        512,
+        560,
         -976
       ],
       "id": "61f4d749-26fc-420a-bc24-d364e0fd1147",
       "name": "C06-N02 - Trigger Export CRM"
+    },
+    {
+      "id": "df1a85bc-0db6-4357-9247-a61c089d929d",
+      "name": "C04-N02 - Contacts et cohérence",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -528,
+        -1008
+      ],
+      "parameters": {
+        "jsCode": "// Contacts, reseaux et signaux d'activite, a partir de ce qu'Apify renvoie.\nconst source = $('C04-N01 - Nettoyage des prospects').all();\nconst brut = $('C03-N02 - Lancer la collecte Apify').all();\nif (source.length !== items.length || brut.length !== items.length) {\n  throw new Error('Appariement impossible : ' + items.length + ' items, ' + source.length + ' nettoyes, ' + brut.length + ' bruts.');\n}\n\nfunction hote(u) {\n  try { return new URL(u).hostname.replace(/^www\\./, '').toLowerCase(); }\n  catch (e) { return ''; }\n}\n\nfunction sansAccent(s) {\n  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();\n}\n\n// Mots de metier trop generiques pour identifier une enseigne en propre\nconst GENERIQUES = ['boulangerie','boulanger','patisserie','patissier','restaurant','brasserie','maison','artisan','artisanale','viennoiserie','traiteur','bistro','france','lyon','paris'];\n\nfunction marqueurs(nom) {\n  return sansAccent(nom).split(/[^a-z0-9]+/)\n    .filter(t => t.length >= 5 && GENERIQUES.indexOf(t) === -1);\n}\n\nreturn items.map((item, index) => {\n  const p = { ...source[index].json };\n  const a = brut[index].json;\n  const domaine = String(a.domain || '').replace(/^www\\./, '').toLowerCase();\n  const mots = marqueurs(p.nom);\n\n  // PIEGE MESURE LE 04/09/2026 : pour \"Le 9eme Pain\", Apify a renvoye les\n  // reseaux de LWS, l'hebergeur du site. 170 000 abonnes attribues a une\n  // boulangerie de quartier.\n  // DEUX preuves d'appartenance sont acceptees :\n  //  1. le profil renvoie vers le domaine du prospect ;\n  //  2. le nom du compte porte un mot distinctif de l'enseigne.\n  // La seconde a ete ajoutee le 04/09 : la preuve 1 seule rejetait de\n  // vrais comptes, car beaucoup mettent un Linktree en lien externe.\n  function verifie(profils, urls) {\n    const liste = Array.isArray(profils) ? profils : [];\n    for (const pr of liste) {\n      if (domaine && hote(pr.externalProfileURL || '') === domaine) {\n        return { url: pr.profileURL || '', profil: pr, etat: 'domaine' };\n      }\n    }\n    for (const pr of liste) {\n      const cible = sansAccent(pr.username) + ' ' + sansAccent(pr.profileName);\n      if (mots.some(m => cible.indexOf(m) !== -1)) {\n        return { url: pr.profileURL || '', profil: pr, etat: 'nom' };\n      }\n    }\n    if (liste.length > 0) {\n      // On note CE QUI a ete rejete : sans ca, un faux negatif est invisible.\n      const vus = liste.map(pr => pr.username || hote(pr.externalProfileURL || '') || '?').join('+');\n      return { url: '', profil: null, etat: 'rejete[' + vus + ']' };\n    }\n    const u = Array.isArray(urls) && urls.length ? urls[0] : '';\n    return { url: u, profil: null, etat: u ? 'non_verifie' : 'absent' };\n  }\n\n  const fb = verifie(a.facebookProfiles, a.facebooks);\n  const ig = verifie(a.instagramProfiles, a.instagrams);\n\n  // LinkedIn : uniquement une page ENTREPRISE. Mesure du 04/09 : sur\n  // \"Boulangerie des Canuts\", linkedIns[0] valait /in/jessica-helme,\n  // un profil personnel sans rapport avec le commerce.\n  const liListe = Array.isArray(a.linkedIns) ? a.linkedIns : [];\n  const li = liListe.filter(u => /linkedin\\.com\\/company\\//i.test(u))[0] || '';\n\n  let email = Array.isArray(a.emails) && a.emails.length ? a.emails[0] : '';\n  if (!email && fb.profil && fb.profil.email) email = fb.profil.email;\n\n  p.email = email;\n  p.facebook = fb.url;\n  p.instagram = ig.url;\n  p.linkedin = li;\n\n  p.instagram_abonnes = ig.profil ? (ig.profil.followersCount || 0) : 0;\n  p.instagram_publications = ig.profil ? (ig.profil.postsCount || 0) : 0;\n  p.facebook_abonnes = fb.profil ? (fb.profil.likes || 0) : 0;\n  p.fiche_non_revendiquee = a.claimThisBusiness === true;\n\n  // Distingue \"aucun compte\" de \"compte non identifie\" : l'IA ne doit pas\n  // affirmer une absence qui n'a pas ete verifiee.\n  p.detection_sociale = (ig.profil || fb.profil) ? 'confirmee'\n    : (ig.etat.indexOf('rejete') === 0 || fb.etat.indexOf('rejete') === 0 || ig.etat === 'non_verifie' || fb.etat === 'non_verifie') ? 'incertaine'\n    : 'aucun_compte_trouve';\n\n  p.enrichissement = 'fb:' + fb.etat + ' ig:' + ig.etat + (domaine ? '' : ' sans_domaine');\n\n  return { json: p };\n});"
+      }
     }
   ],
-  "pinData": {},
   "connections": {
-    "C04-N01 - Nettoyage des prospects": {
-      "main": [
-        [
-          {
-            "node": "C05-N01 - Insert Nouveaux Prospects",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "C05-N02 - Update Prospects Existants",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "C03-N02 - Lancer la collecte Apify": {
       "main": [
         [
@@ -1290,9 +1274,35 @@
           }
         ]
       ]
+    },
+    "C04-N01 - Nettoyage des prospects": {
+      "main": [
+        [
+          {
+            "node": "C04-N02 - Contacts et cohérence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "C04-N02 - Contacts et cohérence": {
+      "main": [
+        [
+          {
+            "node": "C05-N01 - Insert Nouveaux Prospects",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "C05-N02 - Update Prospects Existants",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
@@ -1301,11 +1311,5 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "59422555-33af-4c7a-9b8b-1aae12d4afaa",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "09a4271ff440e2d4ed1d23d70521c8ceadc5f0cf389b7a9fad7d7fcb78f3bb2c"
-  },
-  "id": "PKtVGkyKuftp82G1",
-  "tags": []
+  "pinData": {}
 }

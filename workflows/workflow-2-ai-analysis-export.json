@@ -7,137 +7,52 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA",
-          "mode": "list",
-          "cachedResultName": "CRM-Suivi-Prospection-Ingrid",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA/edit?usp=drivesdk"
+          "value": "REMPLACER_PAR_ID_DU_GOOGLE_SHEET",
+          "mode": "id"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "À trier",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/127uTygkvOC1PstVpvW2YbiiHz9az0c2hHU-TrEAcRrA/edit#gid=0"
+          "mode": "id"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
             "Nom du lieu": "={{ $json.nom }}",
+            "Activité": "={{ $json.recherche }}",
+            "Adresse": "={{ $json.adresse }}",
             "Téléphone": "='{{ $json.telephone }}",
             "Site Web": "={{ $json.site_web }}",
-            "Note Google": "={{ $json.note_google }}",
-            "Statut de qualification": "={{ $json.statut }}",
-            "Adresse": "={{ $json.adresse }}",
-            "Activité": "={{ $json.recherche }}",
             "Email": "={{ $json.email }}",
+            "Note Google": "={{ String($json.note_google || '').replace('.', ',') }}",
+            "Statut de qualification": "={{ $json.statut }}",
+            "Angle Prospection": "={{ $json.angle }}",
             "Accroche": "={{ $json.accroche }}",
-            "Score": "={{ $json.priorite }}",
-            "Angle Prospection": "={{ $json.angle }}"
+            "Priorité": "={{ $json.priorite }}",
+            "Instagram": "={{ $json.instagram }}",
+            "Abonnés Instagram": "={{ /ig:(nom|domaine)/.test(String($json.enrichissement || '')) ? $json.instagram_abonnes : '' }}",
+            "Publications Instagram": "={{ /ig:(nom|domaine)/.test(String($json.enrichissement || '')) ? $json.instagram_publications : '' }}",
+            "Facebook": "={{ $json.facebook }}",
+            "Fiche Google": "={{ $json.fiche_non_revendiquee ? 'NON revendiquée' : 'revendiquée' }}"
           },
           "matchingColumns": [],
           "schema": [
-            {
-              "id": "Nom du lieu",
-              "displayName": "Nom du lieu",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Activité",
-              "displayName": "Activité",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Adresse",
-              "displayName": "Adresse",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Téléphone",
-              "displayName": "Téléphone",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Site Web",
-              "displayName": "Site Web",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Email",
-              "displayName": "Email",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Note Google",
-              "displayName": "Note Google",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Statut de qualification",
-              "displayName": "Statut de qualification",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Angle Prospection",
-              "displayName": "Angle Prospection",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Accroche",
-              "displayName": "Accroche",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "Score",
-              "displayName": "Score",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
+            { "id": "Nom du lieu", "displayName": "Nom du lieu", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Activité", "displayName": "Activité", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Adresse", "displayName": "Adresse", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Téléphone", "displayName": "Téléphone", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Site Web", "displayName": "Site Web", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Email", "displayName": "Email", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Note Google", "displayName": "Note Google", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Statut de qualification", "displayName": "Statut de qualification", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true },
+            { "id": "Angle Prospection", "displayName": "Angle Prospection", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Accroche", "displayName": "Accroche", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Priorité", "displayName": "Priorité", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Instagram", "displayName": "Instagram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Abonnés Instagram", "displayName": "Abonnés Instagram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Publications Instagram", "displayName": "Publications Instagram", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Facebook", "displayName": "Facebook", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false },
+            { "id": "Fiche Google", "displayName": "Fiche Google", "required": false, "defaultMatch": false, "display": true, "type": "string", "canBeUsedToMatch": true, "removed": false }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
@@ -146,18 +61,11 @@
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
-      "position": [
-        288,
-        -80
-      ],
+      "position": [288, -80],
       "id": "f9bbd051-3ad6-47a6-8dff-417f579bd9bd",
       "name": "Append row in sheet",
-      "credentials": {
-        "googleApi": {
-          "id": "UFi7go4Zcy3jXkGT",
-          "name": "Google Sheets — Service Account Vendeur IA"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {
@@ -165,33 +73,25 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -800,
-        -80
-      ],
+      "position": [-800, -80],
       "id": "20c79809-012f-4b88-b382-c738a36deb42",
       "name": "When Executed by Another Workflow"
     },
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT p.*\nFROM prospects p\nJOIN collectes c ON p.place_id = c.place_id\nWHERE c.id_campagne::text = '{{ $json.id_campagne }}';",
-        "options": {}
+        "query": "SELECT p.*\nFROM prospects p\nJOIN collectes c ON p.place_id = c.place_id\nWHERE c.id_campagne::text = $1;",
+        "options": {
+          "queryReplacement": "={{ $json.id_campagne }}"
+        }
       },
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
-      "position": [
-        -608,
-        -80
-      ],
+      "position": [-608, -80],
       "id": "dbbae713-7184-45b3-be06-b3fd91d0825e",
       "name": "SQL_Get_Prospects",
-      "credentials": {
-        "postgres": {
-          "id": "VIoMD82T0NJcp6B7",
-          "name": "Supabase - Wacm Prod"
-        }
-      }
+      "retryOnFail": true,
+      "maxTries": 3
     },
     {
       "parameters": {
@@ -232,6 +132,18 @@
               "name": "metier",
               "value": "={{ $json.recherche }}",
               "type": "string"
+            },
+            {
+              "id": "a1c5e7d0-1111-4aaa-9001-aa0000000001",
+              "name": "audience",
+              "value": "=Instagram : {{ /ig:(nom|domaine)/.test(String($json.enrichissement || '')) ? ($json.instagram_abonnes + ' abonnés et ' + $json.instagram_publications + ' publications') : (String($json.instagram || '') ? 'compte existant mais statistiques NON MESURÉES' : 'aucun compte trouvé, mais la détection peut avoir échoué') }}. Facebook : {{ /fb:(nom|domaine)/.test(String($json.enrichissement || '')) ? ($json.facebook_abonnes + ' abonnés') : (String($json.facebook || '') ? 'compte existant mais statistiques NON MESURÉES' : 'aucun compte trouvé, mais la détection peut avoir échoué') }}.",
+              "type": "string"
+            },
+            {
+              "id": "a1c5e7d0-1111-4aaa-9001-aa0000000002",
+              "name": "fiche_google",
+              "value": "={{ $json.fiche_non_revendiquee ? 'NON revendiquée par le commerce' : 'revendiquée' }}",
+              "type": "string"
             }
           ]
         },
@@ -239,10 +151,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -432,
-        -80
-      ],
+      "position": [-432, -80],
       "id": "b7cad505-f626-4550-9476-feb49ef1068b",
       "name": "Set_AI_Input"
     },
@@ -257,7 +166,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Tu es un assistant expert en prospection pour une Social Media Manager. Analyse le prospect suivant :\n- Nom : {{ $json.nom }}\n- Métier : {{ $json.metier }} (Catégorie : {{ $json.categorie }})\n- Présence digitale : {{ $json.reseaux_sociaux }}\n- Réputation : {{ $json.avis }}\n- Site Web : {{ $json.site_web }}\n\nTon rôle est de fournir une recommandation d'approche pour Ingrid.\n\nRéponds UNIQUEMENT sous forme de JSON structuré, sans texte avant ou après :\n{\n  \"angle\": \"Explique ici en 10 mots l'angle de prospection (ex: besoin de visibilité Instagram)\",\n  \"accroche\": \"Rédige ici la phrase d'approche courte pour Ingrid\",\n  \"priorite\": \"Un chiffre entre 1 et 5\"\n}"
+              "content": "=Tu es un assistant expert en prospection pour une Social Media Manager. Analyse le prospect suivant :\n- Nom : {{ $json.nom }}\n- Métier : {{ $json.metier }} (Catégorie : {{ $json.categorie }})\n- Réputation Google : {{ $json.avis }}\n- Fiche Google : {{ $json.fiche_google }}\n- Audience sociale : {{ $json.audience }}\n- Comptes : {{ $json.reseaux_sociaux }}\n- Site Web : {{ $json.site_web }}\n\n⚠ RÈGLE DE PRUDENCE — la plus importante, lis-la en premier.\nLe champ « Audience sociale » donne l'état RÉSEAU PAR RÉSEAU.\n- Quand il dit \"NON MESURÉES\" ou \"la détection peut avoir échoué\" pour un\n  réseau, tu n'as AUCUN DROIT d'écrire que le compte est vide, inexistant,\n  ou à zéro abonné. Ce serait faux et humiliant pour le prospect.\n- Tu ne cites un nombre d'abonnés QUE pour un réseau dont les statistiques\n  sont données explicitement.\n- Un réseau non mesuré ne se mentionne pas dans l'accroche. Écris alors sur\n  ce qui est certain : la note, les avis, la fiche Google.\n\nRÈGLE DE PRIORISATION — applique-la strictement.\n\nDéfinitions :\n- RÉPUTATION ÉTABLIE : note d'au moins 4,0 sur au moins 50 avis Google.\n  C'est la preuve que le commerce a des clients, donc de quoi payer.\n- AUDIENCE SOUS-EXPLOITÉE : le nombre d'abonnés MESURÉ le plus élevé (Instagram\n  ou Facebook) est INFÉRIEUR au nombre d'avis Google. Les avis mesurent les\n  clients réels, les abonnés l'audience en ligne : plus d'acheteurs que de\n  suiveurs, ce sont des clients satisfaits qui ne suivent pas le commerce.\n  Si AUCUN réseau n'est mesuré, considère l'audience comme sous-exploitée\n  — mais sans jamais l'affirmer dans l'accroche.\n\nClassement :\n- \"1 - Haute\" : réputation établie ET audience sous-exploitée.\n- \"2 - Moyenne\" : un seul des deux critères.\n- \"3 - Basse\" : plus d'abonnés mesurés que d'avis. Quelqu'un s'occupe déjà\n  de ses réseaux.\n\nConsignes de rédaction :\n- Cite un chiffre réel et certain du prospect dans l'accroche.\n- Écris les notes avec une virgule française et sans zéro inutile : 4,7/5\n  et non 4.70/5 ni 4,70/5.\n- Si la fiche Google n'est pas revendiquée, c'est un angle prioritaire.\n\nRÉPONSE — uniquement l'objet JSON ci-dessous, sans aucune phrase avant ni\naprès, sans balises de code :\n{\n  \"angle\": \"L'angle de prospection, 10 mots maximum\",\n  \"accroche\": \"La phrase d'approche courte, adressée au prospect\",\n  \"priorite\": \"Exactement une de ces trois chaînes : 1 - Haute OU 2 - Moyenne OU 3 - Basse\"\n}"
             }
           ]
         },
@@ -265,18 +174,10 @@
       },
       "type": "@n8n/n8n-nodes-langchain.anthropic",
       "typeVersion": 1,
-      "position": [
-        -224,
-        -80
-      ],
+      "position": [-224, -80],
       "id": "2b7d9d4a-2d37-441e-a800-eb800bd36fc3",
       "name": "AI_Claude_Prospect_Analysis",
-      "credentials": {
-        "anthropicApi": {
-          "id": "w7OEC4dThiZIPIES",
-          "name": "Anthropic account 2"
-        }
-      }
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -287,10 +188,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        -864,
-        -192
-      ],
+      "position": [-864, -192],
       "id": "fd4ab538-7918-4205-806c-0e2ca09f1034",
       "name": "Sticky Note"
     },
@@ -303,10 +201,7 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        -624,
-        -192
-      ],
+      "position": [-624, -192],
       "id": "a2ad7547-c7b1-4f7a-9230-722e6beb0a4a",
       "name": "Sticky Note1"
     },
@@ -319,99 +214,43 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        -240,
-        -192
-      ],
+      "position": [-240, -192],
       "id": "362aec3b-09c9-46c7-a9c1-52fddc63d564",
       "name": "Sticky Note2"
     },
     {
       "parameters": {
-        "jsCode": "return items.map((item, index) => {\n    // 1. Récupérer le texte brut de Claude\n    let text = item.json.content.find(c => c.type === 'text').text;\n    \n    // 2. Nettoyer les balises Markdown ```json et ```\n    text = text.replace(/```json/g, '').replace(/```/g, '').trim();\n    \n    let aiData = {};\n    try {\n        aiData = JSON.parse(text);\n    } catch (e) {\n        aiData = { angle: \"Erreur de parsing\", accroche: \"\", priorite: \"0\" };\n    }\n\n    // 3. Récupérer TOUTES les données d'origine depuis le nœud SQL renommé\n    let originalData = $('SQL_Get_Prospects').all()[index].json;\n\n    // 4. Fusionner : toutes les données SQL d'origine + les nouvelles de l'IA\n    return {\n        json: {\n            ...originalData,\n            ...aiData\n        }\n    };\n});"
+        "jsCode": "// CONTRAT D'APPARIEMENT — ajouté le 04/09/2026.\n// L'analyse IA est recollée au prospect par son INDEX. Si le nœud IA\n// produit un nombre d'items différent du SQL, l'analyse d'un prospect est\n// attribuée à un autre, silencieusement. On échoue bruyamment.\nconst sql = $('SQL_Get_Prospects').all();\nif (sql.length !== items.length) {\n  throw new Error('Appariement impossible : ' + items.length + ' reponses IA pour ' + sql.length + ' prospects.');\n}\n\nconst PRIORITES = ['1 - Haute', '2 - Moyenne', '3 - Basse'];\n\nreturn items.map((item, index) => {\n  const ai = { angle: '', accroche: '', priorite: '', anomalie: '' };\n\n  try {\n    let text = item.json.content.find(c => c.type === 'text').text;\n    text = text.replace(/```json/g, '').replace(/```/g, '').trim();\n\n    // MESURE DU 04/09/2026 : un prospect sur cinq a echoue au parsing et\n    // une ligne vide est partie dans le Sheet du client. Le modele ajoute\n    // parfois une phrase avant ou apres le JSON. On extrait donc le premier\n    // objet complet du texte au lieu d'exiger que TOUT le texte soit du JSON.\n    const debut = text.indexOf('{');\n    const fin = text.lastIndexOf('}');\n    if (debut !== -1 && fin > debut) text = text.slice(debut, fin + 1);\n\n    const parsed = JSON.parse(text);\n    ai.angle = parsed.angle || '';\n    ai.accroche = parsed.accroche || '';\n    ai.priorite = parsed.priorite || '';\n  } catch (e) {\n    ai.anomalie = 'parsing';\n  }\n\n  if (!PRIORITES.includes(ai.priorite)) {\n    ai.anomalie = ai.anomalie || 'priorite_hors_referentiel';\n    ai.priorite = '2 - Moyenne';\n  }\n\n  // Une ligne sans angle ni accroche n'a aucune valeur pour la cliente.\n  // On le dit dans la cellule plutot que de livrer du vide muet.\n  if (!ai.angle && !ai.accroche) {\n    ai.angle = 'A REPRENDRE - analyse IA indisponible';\n    ai.anomalie = ai.anomalie || 'reponse_vide';\n  }\n\n  return { json: { ...sql[index].json, ...ai } };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        80,
-        -80
-      ],
+      "position": [80, -80],
       "id": "c384655b-7468-45e2-9999-dce151a50a2c",
       "name": "Parse_AI_And_Merge"
     }
   ],
-  "pinData": {},
   "connections": {
     "When Executed by Another Workflow": {
-      "main": [
-        [
-          {
-            "node": "SQL_Get_Prospects",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "SQL_Get_Prospects", "type": "main", "index": 0 }]]
     },
     "SQL_Get_Prospects": {
-      "main": [
-        [
-          {
-            "node": "Set_AI_Input",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "Set_AI_Input", "type": "main", "index": 0 }]]
     },
     "Set_AI_Input": {
-      "main": [
-        [
-          {
-            "node": "AI_Claude_Prospect_Analysis",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "AI_Claude_Prospect_Analysis", "type": "main", "index": 0 }]]
     },
     "AI_Claude_Prospect_Analysis": {
-      "main": [
-        [
-          {
-            "node": "Parse_AI_And_Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "Parse_AI_And_Merge", "type": "main", "index": 0 }]]
     },
     "Parse_AI_And_Merge": {
-      "main": [
-        [
-          {
-            "node": "Append row in sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "Append row in sheet", "type": "main", "index": 0 }]]
     }
   },
-  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "timeSavedMode": "fixed",
-    "errorWorkflow": "UMjwyTZdxx15LbYJ",
-    "callerPolicy": "workflowsFromSameOwner",
-    "availableInMCP": false
+    "callerPolicy": "workflowsFromSameOwner"
   },
-  "versionId": "731f9b68-0ce3-4838-9b71-d51cff36c714",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "09a4271ff440e2d4ed1d23d70521c8ceadc5f0cf389b7a9fad7d7fcb78f3bb2c"
-  },
-  "id": "9DdMRib4qCeWn1pN",
-  "tags": []
+  "pinData": {}
 }
