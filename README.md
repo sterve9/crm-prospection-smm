@@ -18,9 +18,9 @@ Projet réel, entièrement documenté selon la **méthode d'architecture de syst
 | Temps de prospection | ~2 h / jour, manuel | ~2 min pour lancer, puis qualification seule |
 | Prospects exploitables | 59 accumulés, non qualifiés | collectés, dédoublonnés, enrichis |
 | Conversion | 0 | la matière commerciale existe enfin |
-| Coût par prospect qualifié | — | **~0,10 €** mesuré (Apify ~0,09 $ + Claude ~0,01 $) |
+| Coût par prospect qualifié | — | **~0,10 $** mesuré (Apify ~0,09 $ + Claude ~0,01 $) |
 
-<sub>* Coût réel mesuré (septembre 2026, config avec extraction des contacts) : ~0,09 $/prospect côté Apify + ~0,01 $/prospect côté Claude Sonnet. Une campagne de 50 prospects revient à ~5 €, soit **~0,10 € le lead prêt à contacter** — là où la même collecte à la main mobilise ~2 h/jour.</sub>
+<sub>* Coût réel mesuré (septembre 2026, config avec extraction des contacts) : ~0,09 $/prospect côté Apify + ~0,01 $/prospect côté Claude Sonnet. Une campagne de 50 prospects revient à ~5 $, soit **~0,10 $ le lead prêt à contacter** — là où la même collecte à la main mobilise ~2 h/jour.</sub>
 
 
 ---
