@@ -8,6 +8,23 @@ Projet réel, entièrement documenté selon la **méthode d'architecture de syst
 
 ---
 
+## Le résultat en une ligne
+
+**Avant :** ~2 h par jour de prospection manuelle, **59 prospects** accumulés dans un fichier, **0 conversion**.
+**Avec le système :** une recherche lancée en **~2 minutes**, puis des prospects collectés, dédoublonnés et enrichis automatiquement (angle d'approche + accroche + score). La SMM n'a plus qu'à qualifier et contacter.
+
+| | Avant | Avec le système |
+|---|---|---|
+| Temps de prospection | ~2 h / jour, manuel | ~2 min pour lancer, puis qualification seule |
+| Prospects exploitables | 59 accumulés, non qualifiés | collectés, dédoublonnés, enrichis |
+| Conversion | 0 | la matière commerciale existe enfin |
+| Coût par prospect qualifié | — | **~0,10 €** mesuré (Apify ~0,09 $ + Claude ~0,01 $) |
+
+<sub>* Coût réel mesuré (septembre 2026, config avec extraction des contacts) : ~0,09 $/prospect côté Apify + ~0,01 $/prospect côté Claude Sonnet. Une campagne de 50 prospects revient à ~5 €, soit **~0,10 € le lead prêt à contacter** — là où la même collecte à la main mobilise ~2 h/jour.</sub>
+
+
+---
+
 ## Aperçu visuel
 
 Le système est porté par **2 workflows n8n** liés, chacun structuré en 3 blocs fonctionnels.
@@ -41,6 +58,12 @@ Chaque prospect enrichi arrive dans l'onglet "À trier" du Google Sheet. La SMM 
 5. Le résultat est livré dans le tableur, prêt à être qualifié manuellement.
 
 ---
+
+## Robustesse — que se passe-t-il quand ça casse ?
+
+- **Apify renvoie du vide ou un nombre de résultats incohérent** → un *contrat d'appariement* lève une erreur plutôt que de risquer d'attribuer l'email d'une entreprise à une autre. Les appels de collecte sont réessayés (jusqu'à 3 fois) et un workflow d'erreur dédié prend le relais.
+- **Le format de Google Maps change** → le mapping vérifie chaque champ (LinkedIn uniquement sur une page `/company/`, email pris dans `emails[]` sinon dans le profil Facebook vérifié) et journalise ce qui a été rejeté : un faux négatif reste visible au lieu de disparaître derrière un `0`.
+- **Un prospect fait échouer l'analyse IA** → le lot continue sans s'interrompre ; le prospect problématique est isolé, pas perdu.
 
 ## Stack technique
 
