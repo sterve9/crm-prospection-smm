@@ -1,26 +1,26 @@
 # CRM Prospection SMM
 
-Système d'automatisation de prospection pour une **Social Media Manager (SMM)** indépendante : collecte de leads depuis Google Maps, stockage structuré, enrichissement par IA générative, restitution dans un tableur de suivi.
+**Récupère ~2 h par jour de prospection manuelle.** À partir d'une simple recherche métier, le système livre une liste de prospects **qualifiés et prêts à contacter** — collectés depuis Google Maps, dédoublonnés, puis enrichis par IA (angle d'approche, accroche personnalisée, score de priorité) — directement dans un tableur de suivi.
 
-Projet réel, entièrement documenté selon la **méthode d'architecture de systèmes IA en 13 étapes**.
+Conçu pour une **Social Media Manager (SMM)** indépendante. **L'IA propose, l'humain décide** : aucune décision commerciale n'est automatisée.
 
-**L'IA propose. L'humain décide.**
+<sub>Stack : n8n · Apify (Google Maps) · Supabase (Postgres) · Claude Sonnet · Google Sheets. Projet réel, documenté de bout en bout (voir la méthode en bas de page).</sub>
 
 ---
 
 ## Le résultat en une ligne
 
-**Avant :** ~2 h par jour de prospection manuelle, **59 prospects** accumulés dans un fichier, **0 conversion**.
-**Avec le système :** une recherche lancée en **~2 minutes**, puis des prospects collectés, dédoublonnés et enrichis automatiquement (angle d'approche + accroche + score). La SMM n'a plus qu'à qualifier et contacter.
+**Avant :** ~2 h par jour de prospection manuelle, **59 prospects** accumulés à la main sur une longue période, **0 exploitable** (ni qualifié, ni priorisé).
+**Avec le système :** une campagne lancée en **~2 minutes** ramène **25 prospects collectés, dédoublonnés et enrichis** (angle d'approche + accroche + score de priorité) — livrés dans le tableur, prêts à contacter.
 
-| | Avant | Avec le système |
+| | Avant (à la main) | Avec le système |
 |---|---|---|
-| Temps de prospection | ~2 h / jour, manuel | ~2 min pour lancer, puis qualification seule |
-| Prospects exploitables | 59 accumulés, non qualifiés | collectés, dédoublonnés, enrichis |
-| Conversion | 0 | la matière commerciale existe enfin |
-| Coût par prospect qualifié | — | **~0,10 $** mesuré (Apify ~0,09 $ + Claude ~0,01 $) |
+| Temps | ~2 h / jour | **~2 min** pour lancer une campagne |
+| Prospects collectés + enrichis | 59 sur une longue période | **25 en ~2 min** (1 campagne réelle) |
+| Prospects qualifiés livrés | 0 exploitable | **25**, avec angle + accroche + score |
+| Coût de la campagne | — | **2,37 $** pour 25 prospects (**~0,095 $/lead**) |
 
-<sub>* Coût réel mesuré (septembre 2026, config avec extraction des contacts) : ~0,09 $/prospect côté Apify + ~0,01 $/prospect côté Claude Sonnet. Une campagne de 50 prospects revient à ~5 $, soit **~0,10 $ le lead prêt à contacter** — là où la même collecte à la main mobilise ~2 h/jour.</sub>
+<sub>* Chiffres d'une campagne réelle (12 sept. 2026) : 25 prospects collectés depuis Google Maps en ~2 min, enrichis par IA et livrés dans le tableur, pour **2,37 $** côté Apify (~0,095 $/prospect) + ~0,01 $/prospect côté Claude Sonnet — là où la même collecte à la main mobilise ~2 h/jour.</sub>
 
 
 ---
